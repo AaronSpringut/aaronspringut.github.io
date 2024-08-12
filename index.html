@@ -30,7 +30,7 @@ body {
      <button id="myButton">Click Me!</button> 
      <script>
             async function fetchData() {
-            const res = await fetch('admin/api/graphql.json', {
+            const res = await fetch('shopify://admin/api/graphql.json', {
                 method: 'GET',
                 body: JSON.stringify({
                     query: `

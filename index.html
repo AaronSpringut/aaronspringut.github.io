@@ -32,17 +32,9 @@ body {
             async function fetchData() {
             const res = await fetch('shopify://admin/api/graphql.json', {
                 method: 'POST',
-                body: JSON.stringify({
-                    query: `
-                    query GetProduct($id: ID!) {
-                        product(id: $id) {
-                        title
-                        }
-                    }
-                    `,
-                    variables: {id: 'gid://shopify/Product/1234567890'},
-                }),
-                });
+                body: JSON.stringify({ query }),
+
+            });
                 console.log(res);
 
                 const {data} = await res.json();

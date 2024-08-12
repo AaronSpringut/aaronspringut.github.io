@@ -31,7 +31,7 @@ body {
      <script>
             async function fetchData() {
             const res = await fetch('shopify://admin/api/graphql.json', {
-                method: 'GET',
+                method: 'POST',
                 body: JSON.stringify({
                     query: `
                     query GetProduct($id: ID!) {

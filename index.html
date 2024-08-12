@@ -29,7 +29,7 @@ body {
       
      <button id="myButton">Click Me!</button> 
      <script>
-            function fetchData() {
+            async function fetchData() {
             const res = await fetch('shopify:admin/api/graphql.json', {
                 method: 'POST',
                 body: JSON.stringify({

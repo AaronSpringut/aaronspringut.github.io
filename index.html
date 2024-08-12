@@ -43,9 +43,11 @@ body {
                     variables: {id: 'gid://shopify/Product/1234567890'},
                 }),
                 });
+                console.log(res);
+
                 const {data} = await res.json();
-                console.log(data);
-        }
+
+            }
         var button = document.getElementById('myButton');
         button.addEventListener('click', fetchData);
         

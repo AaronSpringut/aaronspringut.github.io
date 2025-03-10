@@ -7,15 +7,8 @@
 
 </head>
 
-<style>
-body {
-  font-family: system-ui;
-  background: #f06d06;
-  color: white;
-  text-align: center;
-}
-</style>
 <body>
+
     <h1>👋 Hello World from github codespaces!</h1>
 
     <h2> Test <h2>
@@ -28,52 +21,7 @@ body {
 
     </ui-nav-menu>
 
-     <button id="text-neutral-primary" class="button size-base tone-neutral variant-primary" type="button"><span class="content"><slot></slot></span></button>
-     <button id="myButton">Fetch a product with Direct API!</button> 
-     <script>
-            async function fetchData() {
-
-                const query = `
-                    {
-                    products(first: 1) {
-                        edges {
-                        node {
-                            id
-                            title
-                            description
-                            handle
-                            createdAt
-                            updatedAt
-                            variants(first: 1) {
-                            edges {
-                                node {
-                                id
-                                title
-                                price
-                                }
-                            }
-                            }
-                        }
-                        }
-                    }
-                    }
-                `;
-                const res = await fetch('shopify://admin/api/graphql.json', {
-                    method: 'POST',
-                    body: JSON.stringify({ query }),
-                });
-                console.log(res);
-
-                const {data} = await res.json();
-                console.log(data);
-
-            };
-        var button = document.getElementById('myButton');
-        button.addEventListener('click', fetchData);
-
-
-    </script>   
-
+    <s-button idsuffix="neutral-primary" tone="neutral" variant="primary" id="text-neutral-primary">With text</s-button>
 
 </body>
 </html>

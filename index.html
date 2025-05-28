@@ -1,32 +1,148 @@
 <!DOCTYPE html>
-<html>
-<head>
-
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="shopify-api-key" content="ed4f717db12a0b55142a26f0a01d1f79" />
-    <script src="https://cdn.shopify.com/shopifycloud/app-bridge.js"></script>
+    <title>Fulfillment Tracker – App Home</title>
+    <!-- Load Polaris web components -->
     <script src="https://cdn.shopify.com/shopifycloud/app-bridge-ui-experimental.js"></script>
-</head>
+    <!-- Load Shopify App Bridge -->
+    <script src="https://cdn.shopify.com/shopifycloud/app-bridge.js"></script>
+  </head>
+  <body style="margin:0;padding:0;font-family:inherit;">
+    <!-- App Home pattern -->
+    <s-page>
+      <!-- Title bar (App Bridge will hydrate in real app) -->
+      <ui-title-bar>
+        <button variant="primary">Create shipment</button>
+        <section>
+          <button>Settings</button>
+        </section>
+      </ui-title-bar>
 
-<body>
+      <!-- Critical exceptions banner -->
+      <s-banner tone="critical" heading="Fulfillment exceptions detected" dismissible>
+        7 orders have been in the <strong>Label purchased</strong> status for more than 48 hours.
+        <s-link href="#exceptions-table">View list</s-link>
+      </s-banner>
 
-     <ui-nav-menu>
-      <a href="/" rel="home">Home</a>
-      <a href="/templates">Look at this</a>
-      <a href="/settings">App bridge</a>
-      <a href="/nav">Navigation!</a>
-    </ui-nav-menu>
+      <!-- KPI cards -->
+      <s-section padding="none">
+        <s-box padding="base">
+          <s-grid
+            gridTemplateColumns="repeat(auto-fit,minmax(180px,1fr))"
+            gap="base">
+            <!-- KPI 1 -->
+            <s-box padding="base" background="subdued" borderRadius="base">
+              <s-heading>Total orders today</s-heading>
+              <s-text size="large" as="p">128</s-text>
+            </s-box>
+            <!-- KPI 2 -->
+            <s-box padding="base" background="subdued" borderRadius="base">
+              <s-heading>Unfulfilled orders</s-heading>
+              <s-text size="large" as="p">54</s-text>
+            </s-box>
+            <!-- KPI 3 -->
+            <s-box padding="base" background="subdued" borderRadius="base">
+              <s-heading>Average fulfillment time</s-heading>
+              <s-text size="large" as="p">1 d&nbsp;4 h</s-text>
+            </s-box>
+            <!-- KPI 4 -->
+            <s-box padding="base" background="subdued" borderRadius="base">
+              <s-heading>Exceptions</s-heading>
+              <s-text size="large" tone="critical" as="p">15</s-text>
+            </s-box>
+          </s-grid>
+        </s-box>
+      </s-section>
 
-    <s-unstable-page direction="block"> 
-
-        <s-grid padding="none" gap="large-500" gridTemplateColumns ="2fr 1fr">
-            <s-section  heading="Section 1"><code>This is a test!</code>
-</s-section>
-            <s-section  heading="Section 2"></s-section>
+      <!-- Exceptions table section -->
+      <s-section id="exceptions-table">
+        <s-grid gridTemplateColumns="1fr auto" alignItems="center" paddingBlockEnd="base">
+          <s-heading>Top fulfillment exceptions</s-heading>
+          <s-button tone="neutral" variant="tertiary" href="#">View all</s-button>
         </s-grid>
+        <s-table fullwidth="true">
+          <s-table-header-row>
+            <s-table-header listSlot="primary">Order</s-table-header>
+            <s-table-header>Status</s-table-header>
+            <s-table-header>Age</s-table-header>
+            <s-table-header>Customer</s-table-header>
+            <s-table-header>Assigned to</s-table-header>
+          </s-table-header-row>
+          <s-table-body>
+            <!-- Example rows -->
+            <s-table-row>
+              <s-table-cell>
+                <s-link href="#">#1051</s-link>
+              </s-table-cell>
+              <s-table-cell>
+                <s-badge tone="warning">Label purchased</s-badge>
+              </s-table-cell>
+              <s-table-cell>52 h</s-table-cell>
+              <s-table-cell>Jane Doe</s-table-cell>
+              <s-table-cell>Warehouse A</s-table-cell>
+            </s-table-row>
+            <s-table-row>
+              <s-table-cell>
+                <s-link href="#">#1048</s-link>
+              </s-table-cell>
+              <s-table-cell>
+                <s-badge tone="critical">Package lost</s-badge>
+              </s-table-cell>
+              <s-table-cell>3 d 7 h</s-table-cell>
+              <s-table-cell>Masato Tanaka</s-table-cell>
+              <s-table-cell>Support Team</s-table-cell>
+            </s-table-row>
+            <s-table-row>
+              <s-table-cell>
+                <s-link href="#">#1042</s-link>
+              </s-table-cell>
+              <s-table-cell>
+                <s-badge tone="warning">Label purchased</s-badge>
+              </s-table-cell>
+              <s-table-cell>49 h</s-table-cell>
+              <s-table-cell>Lucía García</s-table-cell>
+              <s-table-cell>Warehouse B</s-table-cell>
+            </s-table-row>
+            <s-table-row>
+              <s-table-cell>
+                <s-link href="#">#1039</s-link>
+              </s-table-cell>
+              <s-table-cell>
+                <s-badge tone="info">In transit (delay)</s-badge>
+              </s-table-cell>
+              <s-table-cell>6 d</s-table-cell>
+              <s-table-cell>Owen Smith</s-table-cell>
+              <s-table-cell>Carrier Liaison</s-table-cell>
+            </s-table-row>
+            <s-table-row>
+              <s-table-cell>
+                <s-link href="#">#1037</s-link>
+              </s-table-cell>
+              <s-table-cell>
+                <s-badge tone="critical">Delivery failed</s-badge>
+              </s-table-cell>
+              <s-table-cell>8 d 2 h</s-table-cell>
+              <s-table-cell>Eva Müller</s-table-cell>
+              <s-table-cell>Support Team</s-table-cell>
+            </s-table-row>
+          </s-table-body>
+        </s-table>
+      </s-section>
 
-
-      </s-unstable-page>
-<code>This is a test!</code>
-
-</body>
-</html>
+      <!-- Quick actions callout card -->
+      <s-section>
+        <s-grid gridTemplateColumns="auto 1fr" gap="base" alignItems="center">
+          <s-icon name="export" tone="info"></s-icon>
+          <s-grid gap="small">
+            <s-heading>Export exception report</s-heading>
+            <s-paragraph>Download a CSV of all outstanding exceptions to share with your&nbsp;3PL.</s-paragraph>
+            <s-button>Download CSV</s-button>
+          </s-grid>
+        </s-grid>
+      </s-section>
+    </s-page>
+  </body>
+</html> 
